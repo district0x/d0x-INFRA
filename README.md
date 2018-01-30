@@ -9,7 +9,7 @@ Stateful [mount](https://github.com/tolitius/mount) modules for server-side logi
 Stateful [mount](https://github.com/tolitius/mount) + [re-frame](https://github.com/Day8/re-frame) modules for fontend-side logic of a district. See full list of created district UI modules [here](https://github.com/search?q=topic%3Adistrict-ui-module+org%3Adistrict0x&type=Repositories).
 
 ### district-ui-component
-[Reagent](https://github.com/reagent-project/reagent) or [React](https://reactjs.org/) visual component in a district UI. See full list of created district UI components [here](https://github.com/search?q=topic%3Adistrict-library+org%3Adistrict0x&type=Repositories).
+[Reagent](https://github.com/reagent-project/reagent) or [React](https://reactjs.org/) visual component in a district UI. See full list of created district UI components [here](https://github.com/search?q=topic%3Adistrict-ui-component+org%3Adistrict0x&type=Repositories).
 
 
 ### district-library

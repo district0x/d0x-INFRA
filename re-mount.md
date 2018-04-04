@@ -225,6 +225,9 @@ And that's it! Our module is pretty much ready. No one ever has to reinvent "now
 Some modules might include also namespaces such as `cool-dev.ui.now.utils` for utils functions, or `cool-dev.ui.now.spec`
 for spec validating configuration options and input into events. 
 
+A re-mount module can also provide reagent components closely related to module's logic. In our example we could be 
+providing component with namespace: `cool-dev.ui.component.current-time`.  
+
 More importantly, since re-mount modularisation pattern creates such a good encapsulation, where each module sits in own repository, 
 we highly recommend you to create tests for each of your module. It'll make maintainability of your modules much easier. 
 

@@ -7,14 +7,14 @@ All that is required are 2 widely used Clojurescript libraries [re-frame](https:
 The pattern is not "buy all or nothing" solution for your re-frame app. You're free to use just a single module in your app and 
 keep rest of code untouched, or you can go modules all the way down, or anything in between. 
 
-#### Problem
+### Problem
 Libraries are obviously very useful for UI development. Since developers discovered that storing all application's 
 state in one place is tremendously useful for UI development, libraries fragmenting application's state become largely unpopular in
 UI world. The fact is though, that stateful libraries can provide higher-level abstractions and more out-of-the-box
 solutions than stateless ones. Ideally, we want libraries encapsulating some part of state and providing 
 consistent API to access it, while the whole state is still being stored in one place. 
 
-#### Solution
+### Solution
 Mount and re-frame perfectly complement each other in providing consistent API for "stateful" libraries aka modules.
  
 These are 4 state related lifecycle steps important for UI development. 
@@ -33,7 +33,7 @@ providing complete GraphQL solution ([district-ui-graphql](https://github.com/di
 
 Full list of re-mount modules made by district0x can be found [here](https://github.com/search?q=topic%3Adistrict-ui-module+org%3Adistrict0x&type=Repositories). 
 
-#### Namespace Structre
+### Namespace Structre
 Let's call our module `cool-dev.ui.now`. You can name re-mount module however you want, but the convention we use 
 is [brandname].ui.[modulename]. 
 

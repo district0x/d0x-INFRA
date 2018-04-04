@@ -9,7 +9,7 @@ keep rest of code untouched, or you can go modules all the way down, or anything
 
 ### Problem
 Libraries are obviously very useful for UI development. Since developers discovered that storing all application's 
-state in one place is tremendously useful for UI development, libraries fragmenting application's state become largely unpopular in
+state in one place is tremendously useful for UI development, libraries fragmenting application's state became largely unpopular in
 UI world. The fact is though, that stateful libraries can provide higher-level abstractions and more out-of-the-box
 solutions than stateless ones. Ideally, we want libraries encapsulating some part of state and providing 
 consistent API to access it, while the whole state is still being stored in one place. 
@@ -27,7 +27,7 @@ These are 4 state related lifecycle steps important for UI development.
 To demonstrate how this actually works in practice, let's create super simple module that provides nothing 
 else but current time as state. 
 
-Note, since re-mount module pattern is very unrestricted, modules complexity vary widely from the simplest ones, that can
+Note, since re-mount module pattern is very unrestricted, modules vary in complexity widely from the simplest ones, that can
 provide nothing but current time ([district.ui.now](https://github.com/district0x/district-ui-now)) to complex ones 
 providing complete GraphQL solution ([district-ui-graphql](https://github.com/district0x/district-ui-graphql)).  
 
@@ -45,7 +45,7 @@ any structure, but this is convention we use, which is very simple and intuitive
 * `cool-dev.ui.now.subs` Will contain re-frame subscriptions
 * `cool-dev.ui.now.queries` Will contain queries - pure functions for working with re-frame db
 
-#### cool-dev.ui.now
+### cool-dev.ui.now
 In this namespace we're going to define mount module: 
 
 ```clojure
@@ -99,7 +99,7 @@ without any copy-paste initialisation code.
 
 Now let's continue with implementation of our module. 
 
-#### cool-dev.ui.now.events
+### cool-dev.ui.now.events
 We're going to put here all re-frame events related to this module. 
 
 ```clojure
@@ -156,16 +156,16 @@ associate more events with it. This is very powerful tool, which you can use to 
 functionality of underlying modules by reacting to their events and performing more actions. You can't globally extend regular 
 function with more functionality if you need. You'd have to do pull request to the original library.
 Thanks to re-frame events, re-mount modules often work as plug-n-play, where literally nothing else 
-needs to be done, except including the namespace in your code and it extends code with new functionality automatically.
+needs to be done, except including the namespace in your code and it extends code with new functionality automatically.  
 Simple example of this are [district-ui-router](https://github.com/district0x/district-ui-router) and [district-ui-router-google-analytics](https://github.com/district0x/district-ui-router-google-analytics)
 modules. `district-ui-router` is module, that fully handles app's routing. When `district-ui-router-google-analytics`
 is included in code it automatically listens to `district-ui-router` events and reports page views to Google Analytics. 
 If you prefer different service, you can simply create different module and still use `district-ui-router`.   
  
-Pro tip: When designing your module always keep in mind how might other developers want to build on top of your 
+Pro tip: When designing your module always keep in mind how other developers might want to build on top of your 
 module and therefore you should split complex operations into multiple events so they can hook into it at right step. 
 
-#### cool-dev.ui.now.subs
+### cool-dev.ui.now.subs
 Into this namespace we put re-frame subscriptions. Provided subscriptions are another type of module's public API. 
 API that's supposed to be used inside reagent components. 
 
@@ -184,9 +184,20 @@ API that's supposed to be used inside reagent components.
 We simply expose just one very simple subscription `::now`, that returns current time, updated each second.
 Again, we're just passing this to function in queries namespace, so subscriptions don't have to deal with state 
 structure. Also notice, how we're using double colon for namespacing names. This is also very good convention, so an application
-with many modules don't have name conflicting problems.
+with many modules don't have name conflicting problems. Namespaced keywords can be aliased same was as namespaces, so
+a developer would use subscription like this: 
 
-#### cool-dev.ui.now.queries
+```clojure
+(ns some.great.app.home-page
+  (:require
+    [cool-dev.ui.now.subs :as now-subs]
+    [re-frame.core :refer [subscribe]]))
+  
+(defn home-page []
+  [:div "Now: " @(subscribe [::now-subs/now])])
+```
+
+### cool-dev.ui.now.queries
 Queries are pure functions operating upon re-frame db. State-changing functions should always return new re-frame db.
 Queries are also part of module's public API. API that's supposed to be used in events or subscriptions.  
 

@@ -6,31 +6,31 @@ Following document goes through usual project structure used for a district code
 Main purpose of server side code is to crawl application data from blockchain and IPFS and restructure it into regular database, so users can perform searchings & filterings over the data. 
 Files for server side are located at `/src/<project-name>/server/`.
 
-##### dev.cljs
+#### dev.cljs
 Contains configuration for running server in dev mode by starting [mount](https://github.com/tolitius/mount). Also, contains function `redeploy` that redeploys smart contracts and restarts all related mount modules. 
 
-##### core.cljs
+#### core.cljs
 Contains configuration for running server in prod mode. 
 
-##### deployer.cljs 
+#### deployer.cljs 
 Contains mount module, that deploys and initializes application smart contracts. 
 
-##### syncer.cljs
+#### syncer.cljs
 Mount module that listens to application related events on blockchain and inserts data into traditional database. 
 
-##### db.cljs
+#### db.cljs
 Contains mount module to setup a traditional database and provide functions for simpler operating. Currently our preferred DB is SQLite, for which we use wrapper module [district-server-db](https://github.com/district0x/district-server-db). Therefore the main purpose of db.cljs is to create SQL tables at mount start. 
 
-##### generator.cljs
+#### generator.cljs
 Contains mount module that generates blockchain transactions in order to initialize application with mock data. 
 
-##### contract/
+#### contract/
 We use contract folder for defining namespaces that reflect API of smart contracts. For example `contract/my-great-contract.cljs` will contain functions for calling methods in MyGreatContract.sol.
 
-##### emailer.cljs
+#### emailer.cljs
 Contains mount module that listens to blockchain events and sends out notification emails accordingly. 
 
-##### Recommended district server modules:
+#### Recommended district server modules:
 Here's list of [mount](https://github.com/tolitius/mount) modules we usually use to reuse same logic across districts.
 
 - [district-server-config](https://github.com/district0x/district-server-config) - Reads configuration from file on mount start.
@@ -47,16 +47,16 @@ Here's full list of [district-server-modules](https://github.com/search?q=topic%
 UI part of a district is made using [re-mount](https://github.com/district0x/d0x-INFRA/blob/master/re-mount.md) modularisation pattern. 
 Files for front-end side are located at `/src/<project-name>/ui/`.
 
-##### core.cljs
+#### core.cljs
 Includes all re-mount modules and starts mount. 
 
-##### Recommended file structure for UI codebase
+#### Recommended file structure for UI codebase
 Coming soon..
 
-##### Styling
+#### Styling
 Coming soon...
 
-##### Recommended district UI modules:
+#### Recommended district UI modules:
 - [district-ui-graphql](https://github.com/district0x/district-ui-graphql) - Client-side solution for GraphQL.
 - [district-ui-web3](https://github.com/district0x/district-ui-web3) - Provides Web3 Instance
 - [district-ui-router](https://github.com/district0x/district-ui-router) - Provides routing functionality.
@@ -74,16 +74,16 @@ Here's full list of [district-ui-modules](https://github.com/search?q=topic%3Adi
 Contains all code that's supposed to be shared between server and UI. 
 Files for are located at `/src/<project-name>/shared/`.
 
-##### smart-contracts.cljs
+#### smart-contracts.cljs
 Contains map defining smart contracts addresses. This file is usually edited programatically when deployer deploys contracts and writes new addresses into it. 
 
-##### routes.cljs 
+#### routes.cljs 
 Definition of routes for UI. It's in shared namespace, because server usually also needs to form URLs when sending email notifications. 
 
-##### graphql_schema.cljs
+#### graphql_schema.cljs
 Contains definition for GraphQL schema. 
 
-##### contract/
+#### contract/
 Contract folder contains namespaces providing parser functions when loading data from blockchain contract. 
 
 ## Smart Contracts

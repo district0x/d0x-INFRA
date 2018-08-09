@@ -33,7 +33,7 @@ providing complete GraphQL solution ([district-ui-graphql](https://github.com/di
 
 Full list of re-mount modules made by district0x can be found [here](https://github.com/search?q=topic%3Adistrict-ui-module+org%3Adistrict0x&type=Repositories). 
 
-## Namespace Structre
+## Namespace Structure
 Let's call our module `cool-dev.ui.now`. You can name re-mount module however you want, but the convention we use 
 is [brandname].ui.[modulename]. 
 
